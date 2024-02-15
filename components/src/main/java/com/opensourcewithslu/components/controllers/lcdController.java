@@ -17,12 +17,12 @@ public class lcdController {
         this.lcdHelper = new LCD1602Helper(i2cConfig, pi4jContext);
     }
 
-    @Post("/write/{text}")
+    @Get("/write/{text}")
     public void writeData(String text){
         lcdHelper.writeText(text);
     }
 
-    @Post("/write/{text}/{line}")
+    @Get("/write/{text}/{line}")
     public void writeDataAtLine(String text, int line){
         lcdHelper.writeTextAtLine(text, line);
     }
