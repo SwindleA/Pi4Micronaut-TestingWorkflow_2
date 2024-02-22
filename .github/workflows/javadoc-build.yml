@@ -1,0 +1,33 @@
+
+name: Build and deploy Javadoc
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  javadoc_build:
+    runs-on: ubuntu-latest
+    name: Generating Javadocs
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Create Javadoc directory
+        run: mkdir -p ./gh-pages/javadocs
+
+      - name: Generate JavaDocs
+        run: |
+          ./gradlew javadoc
+      #      - name: Get ghpages branch
+      #        run: cd gh-pages
+
+      - name: Copy Javadocs to gh-pages
+        run: cp -r ./micronautpi4j-utils/build/docs/javadoc/* ./gh-pages/javadocs/
