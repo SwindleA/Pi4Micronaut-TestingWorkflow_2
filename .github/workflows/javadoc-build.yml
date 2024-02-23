@@ -25,7 +25,7 @@ jobs:
 
       - name: Generate JavaDocs
         run: |
-          ./gradlew javadoc
+          ./gradlew javadoc 
 
       - name: Copy Javadocs to gh-pages
         run: cp -r ./micronautpi4j-utils/build/docs/javadoc/* ./gh-pages/javadocs/
